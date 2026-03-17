@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python Game Share</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>🎮 Python Game Share</h1>
+      <p class="subtitle">Pythonで作ったゲームを投稿して、みんなに共有できるサイト</p>
+    </div>
+  </header>
+
+  <main class="container page-grid">
+    <section class="card form-card">
+      <h2>ゲームを投稿する</h2>
+      <p class="section-text">ゲーム情報を入力して投稿できます。まずはローカルのダミーAPIや、AWS API Gateway + Lambda のURLを config.js に設定してください。</p>
+
+      <form id="gameForm" class="game-form">
+        <label>
+          投稿者名
+          <input id="authorInput" type="text" placeholder="例: Soshi" maxlength="50" required />
+        </label>
+
+        <label>
+          ゲームタイトル
+          <input id="titleInput" type="text" placeholder="例: Python Jump Game" maxlength="100" required />
+        </label>
+
+        <label>
+          ジャンル
+          <select id="genreInput" required>
+            <option value="">選択してください</option>
+            <option value="Action">Action</option>
+            <option value="Puzzle">Puzzle</option>
+            <option value="Shooting">Shooting</option>
+            <option value="RPG">RPG</option>
+            <option value="Simulation">Simulation</option>
+            <option value="Other">Other</option>
+          </select>
+        </label>
+
+        <label>
+          ゲーム説明
+          <textarea id="descriptionInput" rows="5" placeholder="ゲームの内容、遊び方、工夫した点など" maxlength="1000" required></textarea>
+        </label>
+
+        <label>
+          ゲームURL
+          <input id="gameUrlInput" type="url" placeholder="例: https://example.com/game" required />
+        </label>
+
+        <label>
+          サムネイル画像URL
+          <input id="imageUrlInput" type="url" placeholder="例: https://example.com/image.png" />
+        </label>
+
+        <div class="button-row">
+          <button type="submit" id="submitBtn">投稿する</button>
+          <button type="button" id="resetBtn" class="secondary">リセット</button>
+        </div>
+      </form>
+
+      <div id="statusMessage" class="status-message" aria-live="polite"></div>
+    </section>
+
+    <section class="card list-card">
+      <div class="list-header">
+        <div>
+          <h2>投稿されたゲーム一覧</h2>
+          <p class="section-text">公開されているゲームを読み込みます。</p>
+        </div>
+        <button id="loadBtn" class="secondary">再読み込み</button>
+      </div>
+
+      <div class="search-row">
+        <input id="searchInput" type="text" placeholder="タイトルや投稿者名で検索" />
+      </div>
+
+      <div id="loadingMessage" class="loading-message">読み込み待機中です。</div>
+      <div id="gameList" class="game-list"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Built for AWS static hosting + API Gateway + Lambda + DynamoDB</p>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
